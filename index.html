@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Financial Model Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>School Financial Model Calculator</h1>
+            <p>Explore different financial scenarios for school models</p>
+        </header>
+
+        <main>
+            <div class="model-selector">
+                <h2>Select a Model</h2>
+                <select id="model-selector">
+                    <option value="$15k ESA">$15k ESA</option>
+                    <option value="$25k GT">$25k GT</option>
+                    <option value="$40k Alpha">$40k Alpha</option>
+                    <option value="$50k Alpha">$50k Alpha</option>
+                    <option value="$65k Alpha">$65k Alpha</option>
+                    <option value="$40k Alpha Microschool">$40k Alpha Microschool</option>
+                </select>
+            </div>
+
+            <div class="calculator-container">
+                <div class="sliders-container">
+                    <h2>Adjust Parameters</h2>
+                    
+                    <div class="slider-group">
+                        <label for="tuition">Tuition</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="tuition" min="5000" max="100000" step="1000" value="15000">
+                            <div class="input-wrapper">
+                                <input type="text" id="tuition-input" class="value-input" value="15000">
+                                <span class="input-prefix">$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="enrollment">Target Enrollment</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="enrollment" min="10" max="500" step="1" value="400">
+                            <div class="input-wrapper">
+                                <input type="text" id="enrollment-input" class="value-input" value="400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="guide-ratio">Guide Ratio</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="guide-ratio" min="5" max="30" step="1" value="25">
+                            <div class="input-wrapper">
+                                <input type="text" id="guide-ratio-input" class="value-input" value="25">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="guide-salary">Guide Salary</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="guide-salary" min="40000" max="150000" step="5000" value="75000">
+                            <div class="input-wrapper">
+                                <input type="text" id="guide-salary-input" class="value-input" value="75000">
+                                <span class="input-prefix">$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="lead-guides">Lead Guides</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="lead-guides" min="0" max="10" step="1" value="0">
+                            <div class="input-wrapper">
+                                <input type="text" id="lead-guides-input" class="value-input" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="lead-guide-salary">Lead Guide Salary</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="lead-guide-salary" min="100000" max="250000" step="10000" value="150000">
+                            <div class="input-wrapper">
+                                <input type="text" id="lead-guide-salary-input" class="value-input" value="150000">
+                                <span class="input-prefix">$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="facility-per-student">Facility Cost Per Student</label>
+                        <div class="slider-with-value">
+                            <input type="range" id="facility-per-student" min="1000" max="15000" step="500" value="3000">
+                            <div class="input-wrapper">
+                                <input type="text" id="facility-per-student-input" class="value-input" value="3000">
+                                <span class="input-prefix">$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-container">
+                    <h2>Financial Results</h2>
+                    <div class="result-item">
+                        <span class="result-label">Revenue:</span>
+                        <span id="revenue-value" class="result-value">$6,000,000</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Guides Expense:</span>
+                        <span id="guides-expense-value" class="result-value">$1,380,000</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Facility Total:</span>
+                        <span id="facility-total-value" class="result-value">$1,200,000</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Profit (Loss):</span>
+                        <span id="profit-value" class="result-value">$1,986,500</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Margin:</span>
+                        <span id="margin-value" class="result-value">33%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Financial Breakdown</h2>
+                <div class="chart-wrapper">
+                    <canvas id="financial-chart"></canvas>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 School Financial Model Calculator</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
