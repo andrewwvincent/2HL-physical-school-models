@@ -217,30 +217,61 @@ function initializeElements() {
     // Model selector
     modelSelector = document.getElementById('model-selector');
     
-    // Sliders
+    // Basic parameter sliders
     tuitionSlider = document.getElementById('tuition');
     enrollmentSlider = document.getElementById('enrollment');
     guideRatioSlider = document.getElementById('guide-ratio');
-    guideSalarySlider = document.getElementById('guide-salary');
-    leadGuidesSlider = document.getElementById('lead-guides');
-    leadGuideSalarySlider = document.getElementById('lead-guide-salary');
     facilityPerStudentSlider = document.getElementById('facility-per-student');
     
-    // Input boxes
+    // Basic parameter inputs
     tuitionInput = document.getElementById('tuition-input');
     enrollmentInput = document.getElementById('enrollment-input');
     guideRatioInput = document.getElementById('guide-ratio-input');
-    guideSalaryInput = document.getElementById('guide-salary-input');
+    facilityPerStudentInput = document.getElementById('facility-per-student-input');
+    
+    // Headcount sliders
+    // Lead Guides
+    leadGuidesSlider = document.getElementById('lead-guides');
+    leadGuideSalarySlider = document.getElementById('lead-guide-salary');
+    
+    // Guides
+    guidesDisplay = document.getElementById('guides');
+    guideSalarySlider = document.getElementById('guide-salary');
+    
+    // Room Assistants
+    roomAssistantsSlider = document.getElementById('room-assistants');
+    roomAssistantSalarySlider = document.getElementById('room-assistant-salary');
+    
+    // Head of School
+    headOfSchoolSlider = document.getElementById('head-of-school');
+    headOfSchoolSalarySlider = document.getElementById('head-of-school-salary');
+    
+    // Admin
+    adminSlider = document.getElementById('admin');
+    adminSalarySlider = document.getElementById('admin-salary');
+    
+    // Headcount inputs
+    // Lead Guides
     leadGuidesInput = document.getElementById('lead-guides-input');
     leadGuideSalaryInput = document.getElementById('lead-guide-salary-input');
-    facilityPerStudentInput = document.getElementById('facility-per-student-input');
+    
+    // Guides
+    guidesInput = document.getElementById('guides-input');
+    guideSalaryInput = document.getElementById('guide-salary-input');
+    
+    // Room Assistants
+    roomAssistantsInput = document.getElementById('room-assistants-input');
+    roomAssistantSalaryInput = document.getElementById('room-assistant-salary-input');
+    
+    // Head of School
+    headOfSchoolInput = document.getElementById('head-of-school-input');
+    headOfSchoolSalaryInput = document.getElementById('head-of-school-salary-input');
+    
+    // Admin
+    adminInput = document.getElementById('admin-input');
+    adminSalaryInput = document.getElementById('admin-salary-input');
 
-    // Result elements
-    revenueValue = document.getElementById('revenue-value');
-    guidesExpenseValue = document.getElementById('guides-expense-value');
-    facilityTotalValue = document.getElementById('facility-total-value');
-    profitValue = document.getElementById('profit-value');
-    marginValue = document.getElementById('margin-value');
+    // Result elements are accessed directly in the calculateResults function
 }
 
 // Chart
@@ -272,24 +303,67 @@ function parseAndValidateInput(input, min, max, defaultValue) {
 
 // Update input boxes from sliders
 function updateInputsFromSliders() {
+    // Basic parameters
     tuitionInput.value = tuitionSlider.value;
     enrollmentInput.value = enrollmentSlider.value;
     guideRatioInput.value = guideRatioSlider.value;
-    guideSalaryInput.value = guideSalarySlider.value;
+    facilityPerStudentInput.value = facilityPerStudentSlider.value;
+    
+    // Calculate guides count based on enrollment and ratio
+    const enrollment = parseInt(enrollmentSlider.value);
+    const guideRatio = parseInt(guideRatioSlider.value);
+    const guidesCount = Math.ceil(enrollment / guideRatio);
+    guidesInput.value = guidesCount;
+    guidesDisplay.value = guidesCount;
+    
+    // Headcount parameters
+    // Lead Guides
     leadGuidesInput.value = leadGuidesSlider.value;
     leadGuideSalaryInput.value = leadGuideSalarySlider.value;
-    facilityPerStudentInput.value = facilityPerStudentSlider.value;
+    
+    // Guides
+    guideSalaryInput.value = guideSalarySlider.value;
+    
+    // Room Assistants
+    roomAssistantsInput.value = roomAssistantsSlider.value;
+    roomAssistantSalaryInput.value = roomAssistantSalarySlider.value;
+    
+    // Head of School
+    headOfSchoolInput.value = headOfSchoolSlider.value;
+    headOfSchoolSalaryInput.value = headOfSchoolSalarySlider.value;
+    
+    // Admin
+    adminInput.value = adminSlider.value;
+    adminSalaryInput.value = adminSalarySlider.value;
 }
 
 // Update sliders from input boxes
 function updateSlidersFromInputs() {
+    // Basic parameters
     tuitionSlider.value = parseAndValidateInput(tuitionInput, tuitionSlider.min, tuitionSlider.max, tuitionSlider.value);
     enrollmentSlider.value = parseAndValidateInput(enrollmentInput, enrollmentSlider.min, enrollmentSlider.max, enrollmentSlider.value);
     guideRatioSlider.value = parseAndValidateInput(guideRatioInput, guideRatioSlider.min, guideRatioSlider.max, guideRatioSlider.value);
-    guideSalarySlider.value = parseAndValidateInput(guideSalaryInput, guideSalarySlider.min, guideSalarySlider.max, guideSalarySlider.value);
+    facilityPerStudentSlider.value = parseAndValidateInput(facilityPerStudentInput, facilityPerStudentSlider.min, facilityPerStudentSlider.max, facilityPerStudentSlider.value);
+    
+    // Headcount parameters
+    // Lead Guides
     leadGuidesSlider.value = parseAndValidateInput(leadGuidesInput, leadGuidesSlider.min, leadGuidesSlider.max, leadGuidesSlider.value);
     leadGuideSalarySlider.value = parseAndValidateInput(leadGuideSalaryInput, leadGuideSalarySlider.min, leadGuideSalarySlider.max, leadGuideSalarySlider.value);
-    facilityPerStudentSlider.value = parseAndValidateInput(facilityPerStudentInput, facilityPerStudentSlider.min, facilityPerStudentSlider.max, facilityPerStudentSlider.value);
+    
+    // Guides - only salary is editable
+    guideSalarySlider.value = parseAndValidateInput(guideSalaryInput, guideSalarySlider.min, guideSalarySlider.max, guideSalarySlider.value);
+    
+    // Room Assistants
+    roomAssistantsSlider.value = parseAndValidateInput(roomAssistantsInput, roomAssistantsSlider.min, roomAssistantsSlider.max, roomAssistantsSlider.value);
+    roomAssistantSalarySlider.value = parseAndValidateInput(roomAssistantSalaryInput, roomAssistantSalarySlider.min, roomAssistantSalarySlider.max, roomAssistantSalarySlider.value);
+    
+    // Head of School
+    headOfSchoolSlider.value = parseAndValidateInput(headOfSchoolInput, headOfSchoolSlider.min, headOfSchoolSlider.max, headOfSchoolSlider.value);
+    headOfSchoolSalarySlider.value = parseAndValidateInput(headOfSchoolSalaryInput, headOfSchoolSalarySlider.min, headOfSchoolSalarySlider.max, headOfSchoolSalarySlider.value);
+    
+    // Admin
+    adminSlider.value = parseAndValidateInput(adminInput, adminSlider.min, adminSlider.max, adminSlider.value);
+    adminSalarySlider.value = parseAndValidateInput(adminSalaryInput, adminSalarySlider.min, adminSalarySlider.max, adminSalarySlider.value);
     
     // Update inputs with validated values
     updateInputsFromSliders();
@@ -297,42 +371,119 @@ function updateSlidersFromInputs() {
 
 // Calculate financial results
 function calculateResults() {
+    // Get basic parameters
     const tuition = parseInt(tuitionSlider.value);
     const enrollment = parseInt(enrollmentSlider.value);
     const guideRatio = parseInt(guideRatioSlider.value);
-    const guideSalary = parseInt(guideSalarySlider.value);
+    const facilityPerStudent = parseInt(facilityPerStudentSlider.value);
+    
+    // Get headcount parameters
+    // Lead Guides
     const leadGuides = parseInt(leadGuidesSlider.value);
     const leadGuideSalary = parseInt(leadGuideSalarySlider.value);
-    const facilityPerStudent = parseInt(facilityPerStudentSlider.value);
+    
+    // Guides
+    const guides = Math.ceil(enrollment / guideRatio);
+    const guideSalary = parseInt(guideSalarySlider.value);
+    
+    // Room Assistants
+    const roomAssistants = parseInt(roomAssistantsSlider.value);
+    const roomAssistantSalary = parseInt(roomAssistantSalarySlider.value);
+    
+    // Head of School
+    const headOfSchool = parseInt(headOfSchoolSlider.value);
+    const headOfSchoolSalary = parseInt(headOfSchoolSalarySlider.value);
+    
+    // Admin
+    const admin = parseInt(adminSlider.value);
+    const adminSalary = parseInt(adminSalarySlider.value);
+    
+    // HC Loading factor
+    const hcLoading = 1.15; // 15% overhead for benefits, taxes, etc.
     
     // Calculate derived values
     const revenue = tuition * enrollment;
-    const guides = Math.ceil(enrollment / guideRatio);
-    const guidesExpense = (guides * guideSalary + leadGuides * leadGuideSalary) * 1.15; // Including HC Loading
+    
+    // Calculate staff expenses
+    const guidesExpense = guides * guideSalary * hcLoading;
+    const leadGuidesExpense = leadGuides * leadGuideSalary * hcLoading;
+    const roomAssistantsExpense = roomAssistants * roomAssistantSalary * hcLoading;
+    const headOfSchoolExpense = headOfSchool * headOfSchoolSalary * hcLoading;
+    const adminExpense = admin * adminSalary * hcLoading;
+    
+    // Total guide expense (guides + lead guides)
+    const totalGuidesExpense = guidesExpense + leadGuidesExpense;
+    
+    // Total other HC (room assistants, head of school, admin)
+    const totalOtherHC = roomAssistantsExpense + headOfSchoolExpense + adminExpense;
+    
+    // Facility costs
     const facilityTotal = facilityPerStudent * enrollment;
     
-    // For simplicity, we'll use fixed percentages for other expenses based on the selected model
+    // Get values from the selected model for non-staff expenses
     const selectedModel = financialModels.find(model => model["Model Name"] === modelSelector.value);
-    const motivationWorkshopExpense = (selectedModel["Motivation"] + selectedModel["Workshop"]) * enrollment;
-    const miscExpenseTotal = selectedModel["Misc Expense Per Student"] * enrollment;
-    const timebackSoftwareTotal = selectedModel["Timeback / Software Per Student"] * enrollment;
-    const totalOtherHC = selectedModel["Total Other HC"];
     
-    // Calculate profit and margin
-    const totalExpenses = guidesExpense + totalOtherHC + facilityTotal + motivationWorkshopExpense + miscExpenseTotal;
+    // Motivation & Workshop expenses
+    const motivationPerStudent = selectedModel["Motivation"];
+    const workshopPerStudent = selectedModel["Workshop"];
+    const motivationWorkshopPerStudent = motivationPerStudent + workshopPerStudent;
+    const motivationWorkshopExpense = motivationWorkshopPerStudent * enrollment;
+    
+    // Misc expenses
+    const miscExpensePerStudent = selectedModel["Misc Expense Per Student"];
+    const miscExpenseTotal = miscExpensePerStudent * enrollment;
+    
+    // Timeback/Software expenses
+    const timebackSoftwarePerStudent = selectedModel["Timeback / Software Per Student"];
+    const timebackSoftwareTotal = timebackSoftwarePerStudent * enrollment;
+    
+    // Calculate total expenses and profit
+    const totalExpenses = totalGuidesExpense + totalOtherHC + facilityTotal + motivationWorkshopExpense + miscExpenseTotal;
     const profit = revenue - totalExpenses;
     const margin = profit / revenue;
+    
+    // Calculate per-student values
+    const guidesExpensePerStudent = totalGuidesExpense / enrollment;
+    const otherHCPerStudent = totalOtherHC / enrollment;
+    const profitPerStudent = profit / enrollment;
     
     // External profit (including software costs)
     const externalProfit = profit - timebackSoftwareTotal;
     const externalMargin = externalProfit / revenue;
+    const externalProfitPerStudent = externalProfit / enrollment;
     
-    // Update result elements
-    revenueValue.textContent = formatCurrency(revenue);
-    guidesExpenseValue.textContent = formatCurrency(guidesExpense);
-    facilityTotalValue.textContent = formatCurrency(facilityTotal);
-    profitValue.textContent = formatCurrency(profit);
-    marginValue.textContent = formatPercentage(margin);
+    // Update result elements - Revenue
+    document.getElementById('revenue-per-student-value').textContent = formatCurrency(tuition);
+    document.getElementById('revenue-value').textContent = formatCurrency(revenue);
+    
+    // Update expenses
+    document.getElementById('guides-expense-per-student-value').textContent = formatCurrency(guidesExpensePerStudent);
+    document.getElementById('guides-expense-value').textContent = formatCurrency(guidesExpense);
+    
+    document.getElementById('other-hc-per-student-value').textContent = formatCurrency(otherHCPerStudent);
+    document.getElementById('other-hc-value').textContent = formatCurrency(totalOtherHC);
+    
+    document.getElementById('facility-per-student-result-value').textContent = formatCurrency(facilityPerStudent);
+    document.getElementById('facility-total-value').textContent = formatCurrency(facilityTotal);
+    
+    document.getElementById('motivation-workshop-per-student-value').textContent = formatCurrency(motivationWorkshopPerStudent);
+    document.getElementById('motivation-workshop-value').textContent = formatCurrency(motivationWorkshopExpense);
+    
+    document.getElementById('misc-expense-per-student-value').textContent = formatCurrency(miscExpensePerStudent);
+    document.getElementById('misc-expense-value').textContent = formatCurrency(miscExpenseTotal);
+    
+    // Update profit section
+    document.getElementById('profit-per-student-value').textContent = formatCurrency(profitPerStudent);
+    document.getElementById('profit-value').textContent = formatCurrency(profit);
+    document.getElementById('margin-value').textContent = formatPercentage(margin);
+    
+    // Update external profit section
+    document.getElementById('timeback-per-student-value').textContent = formatCurrency(timebackSoftwarePerStudent);
+    document.getElementById('timeback-value').textContent = formatCurrency(timebackSoftwareTotal);
+    
+    document.getElementById('external-profit-per-student-value').textContent = formatCurrency(externalProfitPerStudent);
+    document.getElementById('external-profit-value').textContent = formatCurrency(externalProfit);
+    document.getElementById('external-margin-value').textContent = formatPercentage(externalMargin);
     
     // Update chart
     updateChart(revenue, guidesExpense, totalOtherHC, facilityTotal, motivationWorkshopExpense, miscExpenseTotal, timebackSoftwareTotal);
@@ -452,14 +603,31 @@ function loadModelData(modelName) {
     const model = financialModels.find(model => model["Model Name"] === modelName);
     
     if (model) {
-        // Update sliders
+        // Update basic parameter sliders
         tuitionSlider.value = model["Tuition"];
         enrollmentSlider.value = model["Target Enrollment"];
         guideRatioSlider.value = model["Guide Ratio"];
-        guideSalarySlider.value = model["Guide Salary"];
+        facilityPerStudentSlider.value = model["Facility Per Student"];
+        
+        // Update headcount sliders
+        // Lead Guides
         leadGuidesSlider.value = model["Lead Guides"];
         leadGuideSalarySlider.value = model["Lead Guide Salary"];
-        facilityPerStudentSlider.value = model["Facility Per Student"];
+        
+        // Guides - only salary is editable, count is calculated
+        guideSalarySlider.value = model["Guide Salary"];
+        
+        // Room Assistants
+        roomAssistantsSlider.value = model["Room Assistants"];
+        roomAssistantSalarySlider.value = model["Room Assistant Salary"];
+        
+        // Head of School
+        headOfSchoolSlider.value = model["Head of School"];
+        headOfSchoolSalarySlider.value = model["Head of School Salary"];
+        
+        // Admin
+        adminSlider.value = model["Admin"];
+        adminSalarySlider.value = model["Admin Salary"];
         
         // Update input boxes
         updateInputsFromSliders();
@@ -478,13 +646,22 @@ function setupEventListeners() {
 
     // Add event listeners to all sliders
     const sliders = [
+        // Basic parameters
         tuitionSlider, 
         enrollmentSlider, 
         guideRatioSlider, 
-        guideSalarySlider, 
-        leadGuidesSlider, 
-        leadGuideSalarySlider, 
-        facilityPerStudentSlider
+        facilityPerStudentSlider,
+        
+        // Headcount parameters
+        leadGuidesSlider,
+        leadGuideSalarySlider,
+        guideSalarySlider,
+        roomAssistantsSlider,
+        roomAssistantSalarySlider,
+        headOfSchoolSlider,
+        headOfSchoolSalarySlider,
+        adminSlider,
+        adminSalarySlider
     ];
 
     sliders.forEach(slider => {
@@ -496,13 +673,22 @@ function setupEventListeners() {
     
     // Add event listeners to all input boxes
     const inputs = [
+        // Basic parameters
         tuitionInput,
         enrollmentInput,
         guideRatioInput,
-        guideSalaryInput,
+        facilityPerStudentInput,
+        
+        // Headcount parameters
         leadGuidesInput,
         leadGuideSalaryInput,
-        facilityPerStudentInput
+        guideSalaryInput,
+        roomAssistantsInput,
+        roomAssistantSalaryInput,
+        headOfSchoolInput,
+        headOfSchoolSalaryInput,
+        adminInput,
+        adminSalaryInput
     ];
     
     inputs.forEach(input => {

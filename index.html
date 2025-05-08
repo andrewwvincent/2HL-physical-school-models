@@ -31,76 +31,182 @@
                 <div class="sliders-container">
                     <h2>Adjust Parameters</h2>
                     
-                    <div class="slider-group">
-                        <label for="tuition">Tuition</label>
-                        <div class="slider-with-value">
-                            <input type="range" id="tuition" min="5000" max="100000" step="1000" value="15000">
-                            <div class="input-wrapper">
-                                <input type="text" id="tuition-input" class="value-input" value="15000">
-                                <span class="input-prefix">$</span>
+                    <!-- Basic Parameters -->
+                    <div class="parameter-section">
+                        <div class="slider-group">
+                            <label for="tuition">Tuition</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="tuition" min="5000" max="100000" step="1000" value="15000">
+                                <div class="input-wrapper">
+                                    <input type="text" id="tuition-input" class="value-input" value="15000">
+                                    <span class="input-prefix">$</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slider-group">
+                            <label for="enrollment">Students</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="enrollment" min="10" max="500" step="1" value="400">
+                                <div class="input-wrapper">
+                                    <input type="text" id="enrollment-input" class="value-input" value="400">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slider-group">
+                            <label for="guide-ratio">Guide Ratio</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="guide-ratio" min="5" max="30" step="1" value="25">
+                                <div class="input-wrapper">
+                                    <input type="text" id="guide-ratio-input" class="value-input" value="25">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slider-group">
+                            <label for="facility-per-student">Facility Cost Per Student</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="facility-per-student" min="1000" max="15000" step="500" value="3000">
+                                <div class="input-wrapper">
+                                    <input type="text" id="facility-per-student-input" class="value-input" value="3000">
+                                    <span class="input-prefix">$</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="slider-group">
-                        <label for="enrollment">Target Enrollment</label>
-                        <div class="slider-with-value">
-                            <input type="range" id="enrollment" min="10" max="500" step="1" value="400">
-                            <div class="input-wrapper">
-                                <input type="text" id="enrollment-input" class="value-input" value="400">
+                    
+                    <!-- Headcount Section -->
+                    <div class="parameter-section headcount-section">
+                        <h3>Headcount</h3>
+                        
+                        <!-- Lead Guides -->
+                        <div class="headcount-row">
+                            <div class="role-title">Lead Guides</div>
+                            <div class="headcount-sliders">
+                                <div class="headcount-slider-group">
+                                    <label>Count</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="lead-guides" min="0" max="10" step="1" value="0">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="lead-guides-input" class="value-input" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="headcount-slider-group">
+                                    <label>Salary</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="lead-guide-salary" min="100000" max="250000" step="10000" value="150000">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="lead-guide-salary-input" class="value-input" value="150000">
+                                            <span class="input-prefix">$</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="slider-group">
-                        <label for="guide-ratio">Guide Ratio</label>
-                        <div class="slider-with-value">
-                            <input type="range" id="guide-ratio" min="5" max="30" step="1" value="25">
-                            <div class="input-wrapper">
-                                <input type="text" id="guide-ratio-input" class="value-input" value="25">
+                        
+                        <!-- Guides -->
+                        <div class="headcount-row">
+                            <div class="role-title">Guides</div>
+                            <div class="headcount-sliders">
+                                <div class="headcount-slider-group">
+                                    <label>Count</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="guides" min="0" max="50" step="1" value="16" disabled>
+                                        <div class="input-wrapper">
+                                            <input type="text" id="guides-input" class="value-input" value="16" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="headcount-slider-group">
+                                    <label>Salary</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="guide-salary" min="40000" max="150000" step="5000" value="75000">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="guide-salary-input" class="value-input" value="75000">
+                                            <span class="input-prefix">$</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="slider-group">
-                        <label for="guide-salary">Guide Salary</label>
-                        <div class="slider-with-value">
-                            <input type="range" id="guide-salary" min="40000" max="150000" step="5000" value="75000">
-                            <div class="input-wrapper">
-                                <input type="text" id="guide-salary-input" class="value-input" value="75000">
-                                <span class="input-prefix">$</span>
+                        
+                        <!-- Room Assistants -->
+                        <div class="headcount-row">
+                            <div class="role-title">Room Assistants</div>
+                            <div class="headcount-sliders">
+                                <div class="headcount-slider-group">
+                                    <label>Count</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="room-assistants" min="0" max="10" step="1" value="2">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="room-assistants-input" class="value-input" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="headcount-slider-group">
+                                    <label>Salary</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="room-assistant-salary" min="30000" max="80000" step="5000" value="40000">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="room-assistant-salary-input" class="value-input" value="40000">
+                                            <span class="input-prefix">$</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="slider-group">
-                        <label for="lead-guides">Lead Guides</label>
-                        <div class="slider-with-value">
-                            <input type="range" id="lead-guides" min="0" max="10" step="1" value="0">
-                            <div class="input-wrapper">
-                                <input type="text" id="lead-guides-input" class="value-input" value="0">
+                        
+                        <!-- Head of School -->
+                        <div class="headcount-row">
+                            <div class="role-title">Head of School</div>
+                            <div class="headcount-sliders">
+                                <div class="headcount-slider-group">
+                                    <label>Count</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="head-of-school" min="0" max="1" step="1" value="1">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="head-of-school-input" class="value-input" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="headcount-slider-group">
+                                    <label>Salary</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="head-of-school-salary" min="100000" max="350000" step="10000" value="150000">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="head-of-school-salary-input" class="value-input" value="150000">
+                                            <span class="input-prefix">$</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="slider-group">
-                        <label for="lead-guide-salary">Lead Guide Salary</label>
-                        <div class="slider-with-value">
-                            <input type="range" id="lead-guide-salary" min="100000" max="250000" step="10000" value="150000">
-                            <div class="input-wrapper">
-                                <input type="text" id="lead-guide-salary-input" class="value-input" value="150000">
-                                <span class="input-prefix">$</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slider-group">
-                        <label for="facility-per-student">Facility Cost Per Student</label>
-                        <div class="slider-with-value">
-                            <input type="range" id="facility-per-student" min="1000" max="15000" step="500" value="3000">
-                            <div class="input-wrapper">
-                                <input type="text" id="facility-per-student-input" class="value-input" value="3000">
-                                <span class="input-prefix">$</span>
+                        
+                        <!-- Admin -->
+                        <div class="headcount-row">
+                            <div class="role-title">Admin</div>
+                            <div class="headcount-sliders">
+                                <div class="headcount-slider-group">
+                                    <label>Count</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="admin" min="0" max="5" step="1" value="1">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="admin-input" class="value-input" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="headcount-slider-group">
+                                    <label>Salary</label>
+                                    <div class="slider-with-value">
+                                        <input type="range" id="admin-salary" min="40000" max="100000" step="5000" value="60000">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="admin-salary-input" class="value-input" value="60000">
+                                            <span class="input-prefix">$</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,25 +214,93 @@
 
                 <div class="results-container">
                     <h2>Financial Results</h2>
-                    <div class="result-item">
-                        <span class="result-label">Revenue:</span>
-                        <span id="revenue-value" class="result-value">$6,000,000</span>
+                    
+                    <!-- Revenue Section -->
+                    <div class="result-section">
+                        <div class="result-item">
+                            <span class="result-label">Tuition:</span>
+                            <div class="result-values">
+                                <span id="revenue-per-student-value" class="result-value-per-student">$15,000</span>
+                                <span id="revenue-value" class="result-value-total">$6,000,000</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="result-item">
-                        <span class="result-label">Total Guides Expense:</span>
-                        <span id="guides-expense-value" class="result-value">$1,380,000</span>
+                    
+                    <!-- Expenses Section -->
+                    <div class="result-section expense-section">
+                        <h3>Expenses</h3>
+                        <div class="result-item">
+                            <span class="result-label">Guides:</span>
+                            <div class="result-values">
+                                <span id="guides-expense-per-student-value" class="result-value-per-student">$3,450</span>
+                                <span id="guides-expense-value" class="result-value-total">$1,380,000</span>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Other HC:</span>
+                            <div class="result-values">
+                                <span id="other-hc-per-student-value" class="result-value-per-student">$834</span>
+                                <span id="other-hc-value" class="result-value-total">$333,500</span>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Facility:</span>
+                            <div class="result-values">
+                                <span id="facility-per-student-result-value" class="result-value-per-student">$3,000</span>
+                                <span id="facility-total-value" class="result-value-total">$1,200,000</span>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Motivation & Workshop:</span>
+                            <div class="result-values">
+                                <span id="motivation-workshop-per-student-value" class="result-value-per-student">$1,250</span>
+                                <span id="motivation-workshop-value" class="result-value-total">$500,000</span>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Misc Expense:</span>
+                            <div class="result-values">
+                                <span id="misc-expense-per-student-value" class="result-value-per-student">$1,500</span>
+                                <span id="misc-expense-value" class="result-value-total">$600,000</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="result-item">
-                        <span class="result-label">Facility Total:</span>
-                        <span id="facility-total-value" class="result-value">$1,200,000</span>
+                    
+                    <!-- Profit Section -->
+                    <div class="result-section profit-section">
+                        <div class="result-item">
+                            <span class="result-label">Profit (Loss):</span>
+                            <div class="result-values">
+                                <span id="profit-per-student-value" class="result-value-per-student">$4,966</span>
+                                <span id="profit-value" class="result-value-total">$1,986,500</span>
+                            </div>
+                        </div>
+                        <div class="result-item margin-item">
+                            <span class="result-label">Margin:</span>
+                            <span id="margin-value" class="result-value">33%</span>
+                        </div>
                     </div>
-                    <div class="result-item">
-                        <span class="result-label">Profit (Loss):</span>
-                        <span id="profit-value" class="result-value">$1,986,500</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Margin:</span>
-                        <span id="margin-value" class="result-value">33%</span>
+                    
+                    <!-- External Profit Section -->
+                    <div class="result-section external-section">
+                        <div class="result-item">
+                            <span class="result-label">Timeback / Software:</span>
+                            <div class="result-values">
+                                <span id="timeback-per-student-value" class="result-value-per-student">$2,000</span>
+                                <span id="timeback-value" class="result-value-total">$800,000</span>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">External Profit (Loss):</span>
+                            <div class="result-values">
+                                <span id="external-profit-per-student-value" class="result-value-per-student">$2,966</span>
+                                <span id="external-profit-value" class="result-value-total">$1,186,500</span>
+                            </div>
+                        </div>
+                        <div class="result-item margin-item">
+                            <span class="result-label">External Margin:</span>
+                            <span id="external-margin-value" class="result-value">20%</span>
+                        </div>
                     </div>
                 </div>
             </div>
