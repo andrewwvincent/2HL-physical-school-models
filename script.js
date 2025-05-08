@@ -603,11 +603,28 @@ function loadModelData(modelName) {
     const model = financialModels.find(model => model["Model Name"] === modelName);
     
     if (model) {
+        // Store preset values for basic parameters
+        presetValues['tuition'] = model["Tuition"];
+        presetValues['enrollment'] = model["Target Enrollment"];
+        presetValues['guide-ratio'] = model["Guide Ratio"];
+        presetValues['facility-per-student'] = model["Facility Per Student"];
+        
         // Update basic parameter sliders
         tuitionSlider.value = model["Tuition"];
         enrollmentSlider.value = model["Target Enrollment"];
         guideRatioSlider.value = model["Guide Ratio"];
         facilityPerStudentSlider.value = model["Facility Per Student"];
+        
+        // Store preset values for headcount sliders
+        presetValues['lead-guides'] = model["Lead Guides"];
+        presetValues['lead-guide-salary'] = model["Lead Guide Salary"];
+        presetValues['guide-salary'] = model["Guide Salary"];
+        presetValues['room-assistants'] = model["Room Assistants"];
+        presetValues['room-assistant-salary'] = model["Room Assistant Salary"];
+        presetValues['head-of-school'] = model["Head of School"];
+        presetValues['head-of-school-salary'] = model["Head of School Salary"];
+        presetValues['admin'] = model["Admin"];
+        presetValues['admin-salary'] = model["Admin Salary"];
         
         // Update headcount sliders
         // Lead Guides
@@ -631,6 +648,9 @@ function loadModelData(modelName) {
         
         // Update input boxes
         updateInputsFromSliders();
+        
+        // Create shadow sliders to show preset values
+        createShadowSliders();
         
         // Calculate results
         calculateResults();
@@ -706,6 +726,52 @@ function setupEventListeners() {
                 calculateResults();
             }
         });
+    });
+}
+
+// Store preset values for each slider
+let presetValues = {};
+
+// Create shadow sliders for showing preset values
+function createShadowSliders() {
+    // Remove any existing shadow sliders
+    document.querySelectorAll('.shadow-slider-container').forEach(container => container.remove());
+    
+    // Get all sliders
+    const sliders = document.querySelectorAll('input[type="range"]');
+    
+    // Create shadow sliders for each slider
+    sliders.forEach(slider => {
+        if (presetValues[slider.id]) {
+            const sliderContainer = slider.closest('.slider-with-value');
+            if (!sliderContainer) return;
+            
+            // Get the computed width of the original slider
+            const sliderRect = slider.getBoundingClientRect();
+            const sliderWidth = sliderRect.width;
+            
+            // Create shadow slider container
+            const shadowContainer = document.createElement('div');
+            shadowContainer.className = 'shadow-slider-container';
+            shadowContainer.style.width = `${sliderWidth}px`;
+            
+            // Create shadow slider element
+            const shadowSlider = document.createElement('input');
+            shadowSlider.type = 'range';
+            shadowSlider.className = 'shadow-slider';
+            shadowSlider.min = slider.min;
+            shadowSlider.max = slider.max;
+            shadowSlider.step = slider.step;
+            shadowSlider.value = presetValues[slider.id];
+            shadowSlider.disabled = true;
+            shadowSlider.style.width = '100%';
+            
+            // Add shadow slider to container
+            shadowContainer.appendChild(shadowSlider);
+            
+            // Add shadow container to slider container
+            sliderContainer.insertBefore(shadowContainer, slider);
+        }
     });
 }
 

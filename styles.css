@@ -150,6 +150,63 @@ header p {
     display: flex;
     align-items: center;
     gap: 15px;
+    position: relative;
+}
+
+/* Shadow slider styles */
+.shadow-slider-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 115px); /* Subtract the width of the input box and gap */
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+}
+
+.shadow-slider {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    padding: 0;
+}
+
+.shadow-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e0e0e0 !important;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.shadow-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e0e0e0 !important;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+/* Hide the slider track for shadow slider */
+.shadow-slider::-webkit-slider-runnable-track {
+    background: transparent;
+}
+
+.shadow-slider::-moz-range-track {
+    background: transparent;
 }
 
 .input-wrapper {
@@ -188,6 +245,8 @@ input[type="range"] {
     outline: none;
     -webkit-appearance: none;
     appearance: none;
+    position: relative;
+    z-index: 1; /* Make interactive slider appear in front */
 }
 
 input[type="range"]::-webkit-slider-thumb {
